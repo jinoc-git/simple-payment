@@ -39,6 +39,7 @@ export type Database = {
           role: string;
           username: string;
           address: string | null;
+          detailAddress: string | null;
         };
         Insert: {
           created_at?: string;
@@ -48,6 +49,7 @@ export type Database = {
           role: string;
           username: string;
           address?: string;
+          detailAddress?: string;
         };
         Update: {
           created_at?: string;
@@ -57,6 +59,7 @@ export type Database = {
           role?: string;
           username?: string;
           address?: string;
+          detailAddress?: string;
         };
         Relationships: [
           {
