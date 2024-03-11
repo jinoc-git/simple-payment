@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { addCommas } from '@/lib/changeNumberFormat';
 
 interface ProductInfoProps {
   name: string;
@@ -24,10 +25,10 @@ const ProductInfo = (props: ProductInfoProps) => {
     <Card>
       <CardHeader>
         <CardTitle className="text-lg">{name}</CardTitle>
-        <CardDescription>{store}</CardDescription>
+        <CardDescription>판매처 : {store}</CardDescription>
       </CardHeader>
       <CardContent>{desc}</CardContent>
-      <CardFooter>{price} 원</CardFooter>
+      <CardFooter>{addCommas(price)} 원</CardFooter>
     </Card>
   );
 };
