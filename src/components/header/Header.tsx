@@ -8,7 +8,7 @@ const Header = async () => {
   const session = await getAuthSession();
 
   return (
-    <header className=" flex justify-center w-screen h-[48px]">
+    <header className=" flex justify-center w-full h-[48px]">
       <Nav session={session} />
     </header>
   );
