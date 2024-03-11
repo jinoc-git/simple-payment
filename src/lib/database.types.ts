@@ -38,6 +38,7 @@ export type Database = {
           phone: string;
           role: string;
           username: string;
+          address: string | null;
         };
         Insert: {
           created_at?: string;
@@ -46,6 +47,7 @@ export type Database = {
           phone: string;
           role: string;
           username: string;
+          address?: string;
         };
         Update: {
           created_at?: string;
@@ -54,6 +56,7 @@ export type Database = {
           phone?: string;
           role?: string;
           username?: string;
+          address?: string;
         };
         Relationships: [
           {
