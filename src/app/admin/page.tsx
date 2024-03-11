@@ -13,7 +13,7 @@ export default async function page() {
   if (!isAdmin) redirect('/');
 
   return (
-    <main className="min-h-[calc(100vh-88px)] flex-center">
+    <main className="min-h-[calc(100vh-88px)] flex-box bg-gray-100">
       <div>상품 추가</div>
     </main>
   );

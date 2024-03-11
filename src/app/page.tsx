@@ -8,7 +8,7 @@ export default async function Home() {
   if (!session) redirect('/signin');
 
   return (
-    <main className="min-h-screen bg-gray-100">
+    <main className="min-h-[calc(100vh-48px)] bg-gray-100">
       <div>상품 목록</div>
     </main>
   );

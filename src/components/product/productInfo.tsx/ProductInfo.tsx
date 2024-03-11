@@ -28,7 +28,9 @@ const ProductInfo = (props: ProductInfoProps) => {
         <CardDescription>판매처 : {store}</CardDescription>
       </CardHeader>
       <CardContent>{desc}</CardContent>
-      <CardFooter>{addCommas(price)} 원</CardFooter>
+      <CardFooter>
+        <p className=" font-semibold">{addCommas(price)} 원</p>
+      </CardFooter>
     </Card>
   );
 };

@@ -38,6 +38,8 @@ export type Database = {
           phone: string;
           role: string;
           username: string;
+          address: string | null;
+          detailAddress: string | null;
         };
         Insert: {
           created_at?: string;
@@ -46,6 +48,8 @@ export type Database = {
           phone: string;
           role: string;
           username: string;
+          address?: string;
+          detailAddress?: string;
         };
         Update: {
           created_at?: string;
@@ -54,6 +58,8 @@ export type Database = {
           phone?: string;
           role?: string;
           username?: string;
+          address?: string;
+          detailAddress?: string;
         };
         Relationships: [
           {
@@ -162,3 +168,4 @@ export type Enums<
     : never;
 
 export type InsertUserType = Database['public']['Tables']['users']['Insert'];
+export type UserType = Database['public']['Tables']['users']['Row'];
