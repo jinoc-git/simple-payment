@@ -1,4 +1,4 @@
-import ProductInfo from '@/components/productInfo/ProductInfo';
+import ProductInfo from '@/components/product/Product';
 
 export default function Home() {
   return (
