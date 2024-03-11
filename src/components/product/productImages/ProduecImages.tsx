@@ -37,17 +37,18 @@ const ProduecImages = ({ srcList }: ProduecImagesProps) => {
 
   return (
     <div className="flex flex-col items-center">
-      <Carousel setApi={setApi} className="w-[360px] max-w-xs">
+      <Carousel setApi={setApi} className="w-[360px]">
         <CarouselContent>
           {srcList.map((src, idx) => (
             <CarouselItem key={idx}>
-              <Card className="max-w-[340px] h-[340px]">
-                <CardContent className="flex-box aspect-square p-[10px] object-contain">
+              <Card>
+                <CardContent className="flex-box aspect-square p-[5px] object-contain">
                   <Image
                     src={src}
-                    width={320}
-                    height={320}
+                    width={350}
+                    height={350}
                     alt={`product img ${idx}`}
+                    className="max-w-[350px] max-h-[350px] rounded-md"
                   />
                 </CardContent>
               </Card>

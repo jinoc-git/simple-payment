@@ -3,13 +3,15 @@ import React from 'react';
 import { PRODUCT } from '@/constants/mockProduct';
 
 import ProduecImages from './productImages/ProduecImages';
+import ProductInfo from './productInfo.tsx/ProductInfo';
 
-const ProductInfo = () => {
+const Product = () => {
   return (
-    <section>
+    <section className="flex flex-col w-[500px] p-5">
       <ProduecImages srcList={PRODUCT.images} />
+      <ProductInfo {...PRODUCT.info} />
     </section>
   );
 };
 
-export default ProductInfo;
+export default Product;
