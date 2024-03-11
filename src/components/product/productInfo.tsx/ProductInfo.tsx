@@ -23,7 +23,7 @@ const ProductInfo = (props: ProductInfoProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{name}</CardTitle>
+        <CardTitle className="text-lg">{name}</CardTitle>
         <CardDescription>{store}</CardDescription>
       </CardHeader>
       <CardContent>{desc}</CardContent>
