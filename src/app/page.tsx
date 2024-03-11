@@ -1,12 +1,15 @@
-import Product from '@/components/product/Product';
+import { redirect } from 'next/navigation';
 
-export default function Home() {
+import { getAuthSession } from '@/lib/serverActions';
+
+export default async function Home() {
+  const session = await getAuthSession();
+
+  if (!session) redirect('/signin');
+
   return (
     <main className="min-h-screen bg-gray-100">
-      <div className="flex-box w-full h-[60px]">
-        <h2 className="text-2xl font-bold text-gray-700">결제하기</h2>
-      </div>
-      <Product />
+      <div>상품 목록</div>
     </main>
   );
 }
