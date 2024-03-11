@@ -165,3 +165,4 @@ export type Enums<
     : never;
 
 export type InsertUserType = Database['public']['Tables']['users']['Insert'];
+export type UserType = Database['public']['Tables']['users']['Row'];

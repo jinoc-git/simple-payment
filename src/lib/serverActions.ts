@@ -18,7 +18,8 @@ export const getUserFromServer = async (session: Session) => {
   const { data, error } = await supabaseServerClient
     .from('users')
     .select('*')
-    .eq('id', session.user.id);
+    .eq('id', session.user.id)
+    .single();
 
   return data;
 };
