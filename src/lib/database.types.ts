@@ -1,4 +1,4 @@
-import type { ProductInfoType } from '@/types/product';
+import type { ProductInfoType } from '@/types/product.type';
 
 export type Json =
   | string

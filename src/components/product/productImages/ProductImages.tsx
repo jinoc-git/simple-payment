@@ -19,7 +19,7 @@ interface ProduecImagesProps {
   srcList: string[];
 }
 
-const ProduecImages = ({ srcList }: ProduecImagesProps) => {
+const ProductImages = ({ srcList }: ProduecImagesProps) => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
@@ -36,8 +36,8 @@ const ProduecImages = ({ srcList }: ProduecImagesProps) => {
   }, [api]);
 
   return (
-    <div className="flex flex-col items-center">
-      <Carousel setApi={setApi} className="w-[360px]">
+    <div className="flex flex-col items-center h-[518px]">
+      <Carousel setApi={setApi} className="w-[480px]">
         <CarouselContent>
           {srcList.map((src, idx) => (
             <CarouselItem key={idx}>
@@ -45,10 +45,10 @@ const ProduecImages = ({ srcList }: ProduecImagesProps) => {
                 <CardContent className="flex-box aspect-square p-[5px] object-contain">
                   <Image
                     src={src}
-                    width={350}
-                    height={350}
+                    width={470}
+                    height={470}
                     alt={`product img ${idx}`}
-                    className="max-w-[350px] max-h-[350px] rounded-md"
+                    className="max-w-[470px] max-h-[470px] rounded-md"
                   />
                 </CardContent>
               </Card>
@@ -65,4 +65,4 @@ const ProduecImages = ({ srcList }: ProduecImagesProps) => {
   );
 };
 
-export default ProduecImages;
+export default ProductImages;

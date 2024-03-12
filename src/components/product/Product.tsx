@@ -1,15 +1,25 @@
 import React from 'react';
 
-import { PRODUCT } from '@/constants/mockProduct';
-
-import ProduecImages from './productImages/ProduecImages';
+import ProductImages from './productImages/ProductImages';
 import ProductInfo from './productInfo.tsx/ProductInfo';
 
-const Product = async () => {
+import type { ProductType } from '@/lib/database.types';
+
+interface ProductProps {
+  product: ProductType | null;
+}
+
+const Product = async ({ product }: ProductProps) => {
+  if (!product) {
+    return <div>오류</div>;
+  }
+
   return (
-    <section className="flex flex-col w-[500px]">
-      <ProduecImages srcList={PRODUCT[0].images} />
-      <ProductInfo {...PRODUCT[0].info} />
+    <section className="flex gap-5 justify-between w-[1000px]">
+      <ProductImages srcList={product.images} />
+      <div>
+        <ProductInfo id={product.id} info={product.info} />
+      </div>
     </section>
   );
 };

@@ -17,7 +17,7 @@ const Counter = ({ count, setCount }: CounterProps) => {
   };
 
   return (
-    <div className="flex items-center gap-3 border-y py-2">
+    <div className="flex items-center gap-3 w-full border-y py-2">
       <Button
         variant={'outline'}
         size={'icon'}

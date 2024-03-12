@@ -10,8 +10,8 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 
-import Counter from './counter/Counter';
 import Desc from './desc/Desc';
+import Counter from '../../common/counter/Counter';
 
 const PaymentsInfo = () => {
   const [count, setCount] = useState(1);

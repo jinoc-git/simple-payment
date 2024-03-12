@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Product from '@/components/product/Product';
+import { getProduct } from '@/lib/serverActions';
 
 interface ProductDetailProps {
   params: { productId: string };
@@ -8,6 +9,7 @@ interface ProductDetailProps {
 
 export default async function ProductDetail({ params }: ProductDetailProps) {
   const { productId } = params;
+  const product = await getProduct(productId);
 
   return (
     <main className=" w-full min-h-[calc(100vh-48px)] bg-gray-100">
@@ -15,7 +17,7 @@ export default async function ProductDetail({ params }: ProductDetailProps) {
         <h2 className="text-2xl font-bold text-gray-700">상품 상세</h2>
       </div>
       <div className="flex justify-center gap-5 p-5">
-        <Product />
+        <Product product={product} />
       </div>
     </main>
   );

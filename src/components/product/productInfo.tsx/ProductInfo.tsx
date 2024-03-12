@@ -12,24 +12,32 @@ import {
 } from '@/components/ui/card';
 import { addCommas } from '@/lib/changeNumberFormat';
 
+import TotalPrice from './totalPrice/TotalPrice';
+
+import type { ProductInfoType } from '@/types/product.type';
+
 interface ProductInfoProps {
-  name: string;
-  store: string;
-  price: number;
-  desc: string;
+  id: string;
+  info: ProductInfoType;
 }
 
-const ProductInfo = (props: ProductInfoProps) => {
-  const { name, store, price, desc } = props;
+const ProductInfo = ({ id, info }: ProductInfoProps) => {
+  const { name, store, price, desc } = info;
+
   return (
-    <Card>
+    <Card className="w-[400px] min-h-[370px]">
       <CardHeader>
         <CardTitle className="text-lg">{name}</CardTitle>
         <CardDescription>판매처 : {store}</CardDescription>
       </CardHeader>
-      <CardContent>{desc}</CardContent>
+      <CardContent>
+        <p>{desc}</p>
+        <p className="mt-3 text-right text-2xl text-red-500 font-semibold">
+          {addCommas(price)} 원
+        </p>
+      </CardContent>
       <CardFooter>
-        <p className=" font-semibold">{addCommas(price)} 원</p>
+        <TotalPrice price={price} id={id} />
       </CardFooter>
     </Card>
   );
