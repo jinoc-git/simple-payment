@@ -9,6 +9,27 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      products: {
+        Row: {
+          created_at: string;
+          id: string;
+          images: string[];
+          info: Json;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          images: string[];
+          info?: Json;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          images?: string[];
+          info?: Json;
+        };
+        Relationships: [];
+      };
       theme: {
         Row: {
           admin_id: string;
@@ -32,34 +53,37 @@ export type Database = {
       };
       users: {
         Row: {
+          address: string | null;
           created_at: string;
+          detailAddress: string | null;
           email: string;
           id: string;
           phone: string;
+          point: number;
           role: string;
           username: string;
-          address: string | null;
-          detailAddress: string | null;
         };
         Insert: {
+          address?: string | null;
           created_at?: string;
+          detailAddress?: string | null;
           email: string;
           id?: string;
           phone: string;
+          point?: number;
           role: string;
           username: string;
-          address?: string;
-          detailAddress?: string;
         };
         Update: {
+          address?: string | null;
           created_at?: string;
+          detailAddress?: string | null;
           email?: string;
           id?: string;
           phone?: string;
+          point?: number;
           role?: string;
           username?: string;
-          address?: string;
-          detailAddress?: string;
         };
         Relationships: [
           {
