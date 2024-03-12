@@ -1,3 +1,5 @@
+import type { ProductInfoType } from '@/types/product';
+
 export type Json =
   | string
   | number
@@ -14,19 +16,19 @@ export type Database = {
           created_at: string;
           id: string;
           images: string[];
-          info: Json;
+          info: ProductInfoType;
         };
         Insert: {
           created_at?: string;
           id?: string;
           images: string[];
-          info?: Json;
+          info: ProductInfoType;
         };
         Update: {
           created_at?: string;
           id?: string;
           images?: string[];
-          info?: Json;
+          info?: ProductInfoType;
         };
         Relationships: [];
       };
@@ -193,3 +195,6 @@ export type Enums<
 
 export type InsertUserType = Database['public']['Tables']['users']['Insert'];
 export type UserType = Database['public']['Tables']['users']['Row'];
+export type InsertProductType =
+  Database['public']['Tables']['products']['Insert'];
+export type ProductType = Database['public']['Tables']['products']['Row'];

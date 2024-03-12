@@ -12,11 +12,16 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { PRODUCT } from '@/constants/mockProduct';
 
 import ProductListItem from './productListItem/ProductListItem';
 
-const ProductList = () => {
+import type { ProductType } from '@/lib/database.types';
+
+interface ProductListProps {
+  productList: ProductType[] | null;
+}
+
+const ProductList = ({ productList }: ProductListProps) => {
   const router = useRouter();
   const onClickItem = (id: string) => {
     router.push(`productDetail/${id}`);
@@ -34,7 +39,7 @@ const ProductList = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {PRODUCT.map((item) => (
+        {productList?.map((item) => (
           <ProductListItem key={item.id} product={item} onClick={onClickItem} />
         ))}
       </TableBody>

@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { TableCell, TableRow } from '@/components/ui/table';
 import { addCommas } from '@/lib/changeNumberFormat';
 
-import type { ProductType } from '@/constants/mockProduct';
+import type { ProductType } from '@/lib/database.types';
 
 interface ProductListItemProps {
   product: ProductType;

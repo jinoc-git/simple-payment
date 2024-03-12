@@ -64,6 +64,3 @@ export const PRODUCT = [
     },
   },
 ];
-
-export type ProductType = (typeof PRODUCT)[0];
-export type InsertProductType = Omit<ProductType, 'id'>;

@@ -28,6 +28,14 @@ export const getUserFromServer = async (session: Session) => {
   return data;
 };
 
+export const getProductList = cache(async () => {
+  const { data, error } = await supabaseServerClient
+    .from('products')
+    .select('*');
+
+  return data;
+});
+
 export const getProduct = cache(async (id: string) => {
   // const {data, error} = await supabaseServerClient.from()
 });
