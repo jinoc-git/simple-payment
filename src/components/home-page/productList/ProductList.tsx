@@ -2,6 +2,7 @@
 
 import React from 'react';
 
+import { uuid } from '@supabase/gotrue-js/dist/module/lib/helpers';
 import { useRouter } from 'next/navigation';
 
 import {
@@ -40,7 +41,7 @@ const ProductList = ({ productList }: ProductListProps) => {
       </TableHeader>
       <TableBody>
         {productList?.map((item) => (
-          <ProductListItem key={item.id} product={item} onClick={onClickItem} />
+          <ProductListItem key={uuid()} product={item} onClick={onClickItem} />
         ))}
       </TableBody>
     </Table>

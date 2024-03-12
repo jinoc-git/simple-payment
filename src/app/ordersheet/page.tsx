@@ -16,6 +16,7 @@ interface OrderSheetProps {
 export default async function OrderSheet(props: OrderSheetProps) {
   const session = await getAuthSession();
   if (!session) redirect('/signin');
+  if (Object.keys(props.searchParams).length < 2) redirect('/');
 
   const user = await getUserFromServer(session);
 

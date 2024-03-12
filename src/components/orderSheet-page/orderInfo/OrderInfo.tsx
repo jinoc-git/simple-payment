@@ -4,7 +4,7 @@ import DeliveryInfo from '@/components/orderSheet-page/orderInfo/deliveryInfo/De
 import OrderPerson from '@/components/orderSheet-page/orderInfo/orderPerson/OrderPerson';
 import { getProductListByIds } from '@/lib/serverActions';
 
-import OrderProductInfo from './orderProductInfo/OrderProductInfo';
+import OrderProductsInfo from './orderProductInfo/OrderProductsInfo';
 
 import type { SearchParams } from '@/app/ordersheet/page';
 import type { UserType } from '@/lib/database.types';
@@ -22,7 +22,10 @@ const OrderInfo = async ({ user, searchParams }: OrderInfoProps) => {
 
   return (
     <section className="flex flex-col gap-4 w-[600px]">
-      <OrderProductInfo searchParams={searchParams} productList={productList} />
+      <OrderProductsInfo
+        searchParams={searchParams}
+        productList={productList}
+      />
       <OrderPerson user={user} />
       <DeliveryInfo user={user} />
     </section>
