@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Product from '@/components/product/Product';
-import { getProduct } from '@/lib/serverActions';
+import { getProductById } from '@/lib/serverActions';
 
 interface ProductDetailProps {
   params: { productId: string };
@@ -9,7 +9,7 @@ interface ProductDetailProps {
 
 export default async function ProductDetail({ params }: ProductDetailProps) {
   const { productId } = params;
-  const product = await getProduct(productId);
+  const product = await getProductById(productId);
 
   return (
     <main className=" w-full min-h-[calc(100vh-48px)] bg-gray-100">

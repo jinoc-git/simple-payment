@@ -6,7 +6,7 @@ import OrderInfo from '@/components/orderSheet-page/orderInfo/OrderInfo';
 import Payments from '@/components/orderSheet-page/payments/Payments';
 import { getAuthSession, getUserFromServer } from '@/lib/serverActions';
 
-export type SearchParams = { [key: string]: string | string[] | undefined };
+export type SearchParams = { [key: string]: string | string[] };
 
 interface OrderSheetProps {
   params: {};

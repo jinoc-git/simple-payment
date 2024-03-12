@@ -2,6 +2,7 @@ import React from 'react';
 
 import DeliveryInfo from '@/components/orderSheet-page/orderInfo/deliveryInfo/DeliveryInfo';
 import OrderPerson from '@/components/orderSheet-page/orderInfo/orderPerson/OrderPerson';
+import { getProductListByIds } from '@/lib/serverActions';
 
 import OrderProductInfo from './orderProductInfo/OrderProductInfo';
 
@@ -14,9 +15,14 @@ interface OrderInfoProps {
 }
 
 const OrderInfo = async ({ user, searchParams }: OrderInfoProps) => {
+  const { order, count } = searchParams;
+  const ids = typeof order === 'string' ? [order] : order;
+
+  const productList = await getProductListByIds(ids);
+
   return (
     <section className="flex flex-col gap-4 w-[600px]">
-      <OrderProductInfo searchParams={searchParams} />
+      <OrderProductInfo searchParams={searchParams} productList={productList} />
       <OrderPerson user={user} />
       <DeliveryInfo user={user} />
     </section>

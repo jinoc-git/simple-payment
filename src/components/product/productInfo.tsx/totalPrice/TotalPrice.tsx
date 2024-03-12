@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react';
 
-import { useRouter } from 'next/navigation';
-
 import Counter from '@/components/common/counter/Counter';
 import { addCommas } from '@/lib/changeNumberFormat';
 
@@ -16,12 +14,6 @@ interface TotalPriceProps {
 
 const TotalPrice = ({ price, id }: TotalPriceProps) => {
   const [count, setCount] = useState(1);
-
-  const router = useRouter();
-
-  const onClickPayBtn = () => {
-    router.push(`/ordersheet?order=${id}&count=${count}`);
-  };
 
   const onClickCartBtn = () => {};
 
@@ -37,10 +29,7 @@ const TotalPrice = ({ price, id }: TotalPriceProps) => {
           </p>
         </div>
       </div>
-      <OrderButton
-        onClickPayBtn={onClickPayBtn}
-        onClickCartBtn={onClickCartBtn}
-      />
+      <OrderButton id={id} count={count} onClickCartBtn={onClickCartBtn} />
     </div>
   );
 };

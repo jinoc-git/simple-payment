@@ -3,24 +3,33 @@
 import React from 'react';
 
 import { ShoppingCart } from 'lucide-react';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 
 interface OrderButtonProps {
-  onClickPayBtn: () => void;
+  id: string;
+  count: number;
   onClickCartBtn: () => void;
 }
 
 const OrderButton = (props: OrderButtonProps) => {
-  const { onClickPayBtn, onClickCartBtn } = props;
+  const { id, count, onClickCartBtn } = props;
 
   return (
     <div className="flex w-full gap-2">
-      <Button
-        className="w-full h-[50px] font-semibold text-lg"
-        onClick={onClickPayBtn}
-      >
-        결제하기
+      <Button className="w-full h-[50px] font-semibold text-lg">
+        <Link
+          href={{
+            pathname: '/ordersheet',
+            query: {
+              order: id,
+              count: count,
+            },
+          }}
+        >
+          결제하기
+        </Link>
       </Button>
       <Button className="w-[50px] h-[50px]" onClick={onClickCartBtn}>
         <ShoppingCart className="w-5 h-5" />

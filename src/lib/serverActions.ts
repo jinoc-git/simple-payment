@@ -36,12 +36,21 @@ export const getProductList = cache(async () => {
   return data;
 });
 
-export const getProduct = cache(async (id: string) => {
+export const getProductById = cache(async (id: string) => {
   const { data, error } = await supabaseServerClient
     .from('products')
     .select('*')
     .eq('id', id)
     .single();
+
+  return data;
+});
+
+export const getProductListByIds = cache(async (ids: string[]) => {
+  const { data, error } = await supabaseServerClient
+    .from('products')
+    .select('*')
+    .in('id', ids);
 
   return data;
 });
