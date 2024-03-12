@@ -1,3 +1,5 @@
+import type { ProductInfoType } from '@/types/product.type';
+
 export type Json =
   | string
   | number
@@ -9,6 +11,27 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      products: {
+        Row: {
+          created_at: string;
+          id: string;
+          images: string[];
+          info: ProductInfoType;
+        };
+        Insert: {
+          created_at?: string;
+          id?: string;
+          images: string[];
+          info: ProductInfoType;
+        };
+        Update: {
+          created_at?: string;
+          id?: string;
+          images?: string[];
+          info?: ProductInfoType;
+        };
+        Relationships: [];
+      };
       theme: {
         Row: {
           admin_id: string;
@@ -32,34 +55,37 @@ export type Database = {
       };
       users: {
         Row: {
+          address: string | null;
           created_at: string;
+          detailAddress: string | null;
           email: string;
           id: string;
           phone: string;
+          point: number;
           role: string;
           username: string;
-          address: string | null;
-          detailAddress: string | null;
         };
         Insert: {
+          address?: string | null;
           created_at?: string;
+          detailAddress?: string | null;
           email: string;
           id?: string;
           phone: string;
+          point?: number;
           role: string;
           username: string;
-          address?: string;
-          detailAddress?: string;
         };
         Update: {
+          address?: string | null;
           created_at?: string;
+          detailAddress?: string | null;
           email?: string;
           id?: string;
           phone?: string;
+          point?: number;
           role?: string;
           username?: string;
-          address?: string;
-          detailAddress?: string;
         };
         Relationships: [
           {
@@ -169,3 +195,6 @@ export type Enums<
 
 export type InsertUserType = Database['public']['Tables']['users']['Insert'];
 export type UserType = Database['public']['Tables']['users']['Row'];
+export type InsertProductType =
+  Database['public']['Tables']['products']['Insert'];
+export type ProductType = Database['public']['Tables']['products']['Row'];

@@ -1,10 +1,14 @@
+import { cache } from 'react';
+
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
 import type { Database } from './database.types';
 import type { Session } from '@supabase/auth-helpers-nextjs';
 
-const supabaseServerClient = createServerComponentClient<Database>({ cookies });
+export const supabaseServerClient = createServerComponentClient<Database>({
+  cookies,
+});
 
 export const getAuthSession = async () => {
   const {
@@ -23,3 +27,21 @@ export const getUserFromServer = async (session: Session) => {
 
   return data;
 };
+
+export const getProductList = cache(async () => {
+  const { data, error } = await supabaseServerClient
+    .from('products')
+    .select('*');
+
+  return data;
+});
+
+export const getProduct = cache(async (id: string) => {
+  const { data, error } = await supabaseServerClient
+    .from('products')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  return data;
+});
