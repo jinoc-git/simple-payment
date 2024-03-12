@@ -8,8 +8,8 @@ import ProductInfo from './productInfo.tsx/ProductInfo';
 const Product = async () => {
   return (
     <section className="flex flex-col w-[500px]">
-      <ProduecImages srcList={PRODUCT.images} />
-      <ProductInfo {...PRODUCT.info} />
+      <ProduecImages srcList={PRODUCT[0].images} />
+      <ProductInfo {...PRODUCT[0].info} />
     </section>
   );
 };

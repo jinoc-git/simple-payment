@@ -1,15 +1,9 @@
-import { redirect } from 'next/navigation';
-
-import { getAuthSession } from '@/lib/serverActions';
+import ProductList from '@/components/home-page/productList/ProductList';
 
 export default async function Home() {
-  const session = await getAuthSession();
-
-  if (!session) redirect('/signin');
-
   return (
     <main className="min-h-[calc(100vh-48px)] bg-gray-100">
-      <div>상품 목록</div>
+      <ProductList />
     </main>
   );
 }
