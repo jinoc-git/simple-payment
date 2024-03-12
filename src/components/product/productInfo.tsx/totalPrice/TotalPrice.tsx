@@ -20,7 +20,7 @@ const TotalPrice = ({ price, id }: TotalPriceProps) => {
   const router = useRouter();
 
   const onClickPayBtn = () => {
-    router.push(`/ordersheet?${id}_${count}`);
+    router.push(`/ordersheet?order=${id}&count=${count}`);
   };
 
   const onClickCartBtn = () => {};

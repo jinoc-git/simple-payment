@@ -6,7 +6,14 @@ import OrderInfo from '@/components/orderSheet-page/orderInfo/OrderInfo';
 import Payments from '@/components/orderSheet-page/payments/Payments';
 import { getAuthSession, getUserFromServer } from '@/lib/serverActions';
 
-export default async function OrderSheet() {
+export type SearchParams = { [key: string]: string | string[] | undefined };
+
+interface OrderSheetProps {
+  params: {};
+  searchParams: SearchParams;
+}
+
+export default async function OrderSheet(props: OrderSheetProps) {
   const session = await getAuthSession();
   if (!session) redirect('/signin');
 
@@ -18,7 +25,7 @@ export default async function OrderSheet() {
         <h2 className="text-2xl font-bold text-gray-700">주문 / 결제</h2>
       </div>
       <div className="flex justify-between w-[1080px] gap-5 p-5 mx-auto">
-        <OrderInfo user={user} />
+        <OrderInfo user={user} searchParams={props.searchParams} />
         <Payments />
       </div>
     </main>
