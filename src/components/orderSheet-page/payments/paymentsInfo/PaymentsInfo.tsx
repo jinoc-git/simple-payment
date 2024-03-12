@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 
+import Counter from '@/components/common/counter/Counter';
 import {
   Card,
   CardContent,
@@ -11,7 +12,6 @@ import {
 } from '@/components/ui/card';
 
 import Desc from './desc/Desc';
-import Counter from '../../common/counter/Counter';
 
 const PaymentsInfo = () => {
   const [count, setCount] = useState(1);
