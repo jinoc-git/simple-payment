@@ -8,24 +8,21 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
 
-import DeliveryMemo from './deliveryMemo/DeliveryMemo';
-
 import type { UserType } from '@/lib/database.types';
 
-interface DeliveryInfo {
+interface OrderPersonProps {
   user: UserType | null;
 }
 
-const DeliveryInfo = ({ user }: DeliveryInfo) => {
+const OrderPerson = ({ user }: OrderPersonProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">배송 정보</CardTitle>
+        <CardTitle className="text-lg border-b-2">주문자 정보</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-1">
@@ -37,17 +34,13 @@ const DeliveryInfo = ({ user }: DeliveryInfo) => {
             <>
               <p>{user.username}</p>
               <CardDescription>{user.phone}</CardDescription>
-              <p>{user.address ?? '주소를 입력해 주세요.'}</p>
-              {user.detailAddress ?? <p>{user.detailAddress}</p>}
+              <CardDescription>{user.email}</CardDescription>
             </>
           )}
         </div>
       </CardContent>
-      <CardFooter>
-        <DeliveryMemo />
-      </CardFooter>
     </Card>
   );
 };
 
-export default DeliveryInfo;
+export default OrderPerson;

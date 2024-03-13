@@ -15,7 +15,7 @@ const Product = async ({ product }: ProductProps) => {
   }
 
   return (
-    <section className="flex gap-5 justify-between w-[1000px]">
+    <section className="flex gap-5 justify-between w-[1080px]">
       <ProductImages srcList={product.images} />
       <div>
         <ProductInfo id={product.id} info={product.info} />

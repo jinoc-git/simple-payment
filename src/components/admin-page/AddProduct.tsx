@@ -19,9 +19,10 @@ const AddProduct = () => {
         price: 199000,
         store: '편안한 가구',
         desc: '빛나는 공간에 따뜻한 침실을 선사합니다.',
+        deliveryAmount: 8000,
       },
     };
-    console.log('in');
+
     await addProduct(mock);
   };
   return (

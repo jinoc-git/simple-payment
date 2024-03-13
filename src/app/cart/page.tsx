@@ -2,7 +2,6 @@ import React from 'react';
 
 import { redirect } from 'next/navigation';
 
-import Payments from '@/components/payments/Payments';
 import { getAuthSession, getUserFromServer } from '@/lib/serverActions';
 
 export default async function Cart() {
@@ -18,7 +17,7 @@ export default async function Cart() {
       </div>
       <div className="flex justify-center gap-5 p-5">
         {/* <Product /> */}
-        <Payments user={user} />
+        {/* <Payments user={user} /> */}
       </div>
     </main>
   );

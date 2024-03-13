@@ -3,4 +3,5 @@ export type ProductInfoType = {
   price: number;
   store: string;
   desc: string;
+  deliveryAmount: number;
 };

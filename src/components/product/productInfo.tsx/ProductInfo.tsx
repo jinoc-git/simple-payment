@@ -22,7 +22,7 @@ interface ProductInfoProps {
 }
 
 const ProductInfo = ({ id, info }: ProductInfoProps) => {
-  const { name, store, price, desc } = info;
+  const { name, store, price, desc, deliveryAmount } = info;
 
   return (
     <Card className="w-[400px] min-h-[370px]">
@@ -37,7 +37,7 @@ const ProductInfo = ({ id, info }: ProductInfoProps) => {
         </p>
       </CardContent>
       <CardFooter>
-        <TotalPrice price={price} id={id} />
+        <TotalPrice price={price} id={id} deliveryAmount={deliveryAmount} />
       </CardFooter>
     </Card>
   );

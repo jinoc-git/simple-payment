@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react';
 
-import { useRouter } from 'next/navigation';
-
 import Counter from '@/components/common/counter/Counter';
 import { addCommas } from '@/lib/changeNumberFormat';
 
@@ -12,22 +10,24 @@ import OrderButton from '../orderButton/OrderButton';
 interface TotalPriceProps {
   id: string;
   price: number;
+  deliveryAmount: number;
 }
 
-const TotalPrice = ({ price, id }: TotalPriceProps) => {
+const TotalPrice = ({ price, id, deliveryAmount }: TotalPriceProps) => {
   const [count, setCount] = useState(1);
-
-  const router = useRouter();
-
-  const onClickPayBtn = () => {
-    router.push(`/ordersheet?${id}_${count}`);
-  };
 
   const onClickCartBtn = () => {};
 
   return (
     <div className="w-full space-y-3">
       <Counter count={count} setCount={setCount} />
+      <p className="text-sm text-gray-500">
+        택배배송 &nbsp;
+        <span className="text-sm font-semibold text-black">
+          {addCommas(deliveryAmount)}원
+        </span>
+        &nbsp; (주문시 결제)
+      </p>
       <div className="flex items-center justify-between">
         <p className=" text-sm font-semibold">총 상품 금액</p>
         <div className="flex items-center gap-2">
@@ -37,10 +37,7 @@ const TotalPrice = ({ price, id }: TotalPriceProps) => {
           </p>
         </div>
       </div>
-      <OrderButton
-        onClickPayBtn={onClickPayBtn}
-        onClickCartBtn={onClickCartBtn}
-      />
+      <OrderButton id={id} count={count} onClickCartBtn={onClickCartBtn} />
     </div>
   );
 };
