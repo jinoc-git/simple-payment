@@ -2,7 +2,15 @@
 
 import React from 'react';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { uuid } from '@supabase/gotrue-js/dist/module/lib/helpers';
+
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 import OrderProduct from './orderProduct/OrderProduct';
 
@@ -26,9 +34,20 @@ const OrderProductsInfo = ({
       <CardHeader>
         <CardTitle className="text-lg">주문 상품</CardTitle>
       </CardHeader>
-      <CardContent>
-        <OrderProduct />
+      <CardContent className=" space-y-3">
+        {productList?.map(({ images, info }, idx) => {
+          const count = searchParams.count[idx];
+          return (
+            <OrderProduct
+              key={uuid()}
+              info={info}
+              image={images[0]}
+              count={+count}
+            />
+          );
+        })}
       </CardContent>
+      <CardFooter></CardFooter>
     </Card>
   );
 };
