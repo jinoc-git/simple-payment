@@ -11,6 +11,56 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      coupons: {
+        Row: {
+          created_at: string;
+          description: string;
+          discount: number;
+          discount_type: 'amount' | 'rate';
+          expiry_date: string;
+          id: string;
+          is_used: boolean;
+          max_discount: number;
+          name: string;
+          usage_amount: number;
+          user_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          description: string;
+          discount: number;
+          discount_type: 'amount' | 'rate';
+          expiry_date?: string;
+          id?: string;
+          is_used?: boolean;
+          max_discount: number;
+          name: string;
+          usage_amount: number;
+          user_id: string;
+        };
+        Update: {
+          created_at?: string;
+          description?: string;
+          discount?: number;
+          discount_type?: 'amount' | 'rate';
+          expiry_date?: string;
+          id?: string;
+          is_used?: boolean;
+          max_discount?: number;
+          name?: string;
+          usage_amount?: number;
+          user_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: 'public_coupons_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       products: {
         Row: {
           created_at: string;
