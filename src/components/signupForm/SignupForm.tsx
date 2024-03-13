@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 
 import useToastModal from '@/hooks/useToastModal';
 import { signup } from '@/lib/auth';
+import { addMembershipCoupons } from '@/lib/coupon';
 import { cn } from '@/lib/utils';
 import { signupFormSchema } from '@/schema/signupFormSchema';
 
@@ -48,7 +49,8 @@ const SignupForm = () => {
 
   const onSubmit = async (data: SignupFormRegisterInput) => {
     try {
-      await signup(data);
+      const user = await signup(data);
+      await addMembershipCoupons(user?.id);
       router.push('/');
       router.refresh();
     } catch (error) {

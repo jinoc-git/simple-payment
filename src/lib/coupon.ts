@@ -2,7 +2,9 @@ import { supabaseClientClient } from './auth';
 
 import type { InsertCouponType } from './database.types';
 
-export const addMembershipCoupons = async (userId: string) => {
+export const addMembershipCoupons = async (userId: string | undefined) => {
+  if (!userId) return;
+
   const rateCoupon: InsertCouponType = {
     user_id: userId,
     name: '20% 할인 쿠폰',
