@@ -22,7 +22,7 @@ const OrderPerson = ({ user }: OrderPersonProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">주문자 정보</CardTitle>
+        <CardTitle className="text-lg border-b-2">주문자 정보</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-1">

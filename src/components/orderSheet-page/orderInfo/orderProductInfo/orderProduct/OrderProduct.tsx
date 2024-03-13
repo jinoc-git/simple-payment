@@ -17,10 +17,15 @@ interface OrderProductProps {
 
 const OrderProduct = ({ image, info, count }: OrderProductProps) => {
   return (
-    <div className=" border-t-2 space-y-2 pt-2">
+    <div className=" border-b-2 space-y-2 pb-2">
       <div className="flex justify-between items-center">
         <p className="text-lg font-semibold">{info.store}</p>
-        <Truck />
+        <div className="flex gap-2 items-center">
+          <Truck className=" w-5 h-5 stroke-blue-500" />
+          <p className=" text-sm font-normal text-blue-500">
+            {addCommas(info.deliveryAmount)}원
+          </p>
+        </div>
       </div>
       <div className="flex gap-2">
         <Image

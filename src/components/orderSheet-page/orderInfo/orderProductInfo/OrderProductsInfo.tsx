@@ -11,32 +11,34 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { calcTotalPrice } from '@/lib/calc';
+import { addCommas } from '@/lib/changeNumberFormat';
 
 import OrderProduct from './orderProduct/OrderProduct';
 
-import type { SearchParams } from '@/app/ordersheet/page';
 import type { ProductType } from '@/lib/database.types';
 
 interface OrderProductInfoProps {
   productList: ProductType[] | null;
-  searchParams: SearchParams;
+  countList: string[];
 }
 
 const OrderProductsInfo = ({
-  searchParams,
+  countList,
   productList,
 }: OrderProductInfoProps) => {
-  console.log(searchParams);
+  if (!productList) return <div>오류</div>;
+
   console.log(productList);
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">주문 상품</CardTitle>
+        <CardTitle className="text-lg border-b-2">주문 상품</CardTitle>
       </CardHeader>
       <CardContent className=" space-y-3">
-        {productList?.map(({ images, info }, idx) => {
-          const count = searchParams.count[idx];
+        {productList.map(({ images, info }, idx) => {
+          const count = countList[idx];
           return (
             <OrderProduct
               key={uuid()}
@@ -47,7 +49,10 @@ const OrderProductsInfo = ({
           );
         })}
       </CardContent>
-      <CardFooter></CardFooter>
+      <CardFooter className="flex justify-between">
+        <p className="text-[17px] font-semibold">주문금액</p>
+        <p>{addCommas(calcTotalPrice(productList, countList))}원</p>
+      </CardFooter>
     </Card>
   );
 };

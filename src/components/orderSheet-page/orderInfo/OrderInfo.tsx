@@ -19,13 +19,11 @@ const OrderInfo = async ({ user, searchParams }: OrderInfoProps) => {
   const ids = typeof order === 'string' ? [order] : order;
 
   const productList = await getProductListByIds(ids);
+  const countList = typeof count === 'string' ? [count] : count;
 
   return (
     <section className="flex flex-col gap-4 w-[600px]">
-      <OrderProductsInfo
-        searchParams={searchParams}
-        productList={productList}
-      />
+      <OrderProductsInfo countList={countList} productList={productList} />
       <OrderPerson user={user} />
       <DeliveryInfo user={user} />
     </section>
