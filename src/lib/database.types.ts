@@ -248,3 +248,6 @@ export type UserType = Database['public']['Tables']['users']['Row'];
 export type InsertProductType =
   Database['public']['Tables']['products']['Insert'];
 export type ProductType = Database['public']['Tables']['products']['Row'];
+export type InsertCouponType =
+  Database['public']['Tables']['coupons']['Insert'];
+export type CouponType = Database['public']['Tables']['coupons']['Row'];
