@@ -35,6 +35,8 @@ export const signup = async (formData: SignupFormRegisterInput) => {
   };
 
   await insertUser(user);
+
+  return data.user;
 };
 
 const insertUser = async (user: InsertUserType) => {
