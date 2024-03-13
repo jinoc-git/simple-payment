@@ -1,15 +1,18 @@
 import { create } from 'zustand';
 
-import type { CouponType, ProductType } from '@/lib/database.types';
+import type { ProductType } from '@/lib/database.types';
 
 interface OrderStore {
   orderList: ProductType[];
   countList: string[];
-  coupon: CouponType | null;
-  totalPrice: number;
+  coupon: string | null;
+  orderPrice: number;
+  afterCouponPrice: number;
   finalPrice: number;
-  setTotalPrice: (price: number) => void;
-  setFinalPrice: () => void;
+  setOrderPrice: (price: number) => void;
+  setAfterCouponPrice: (price: number) => void;
+  setFinalPrice: (price: number) => void;
+  setCoupon: (coupon: string) => void;
 }
 
 export const orderStore = create<OrderStore>((set) => {
@@ -17,11 +20,20 @@ export const orderStore = create<OrderStore>((set) => {
     orderList: [],
     countList: [],
     coupon: null,
-    totalPrice: 0,
+    orderPrice: 0,
+    afterCouponPrice: 0,
     finalPrice: 0,
-    setTotalPrice: (price: number) => {
-      set({ totalPrice: price });
+    setOrderPrice: (price: number) => {
+      set({ orderPrice: price });
     },
-    setFinalPrice: () => {},
+    setAfterCouponPrice: (price: number) => {
+      set({ afterCouponPrice: price });
+    },
+    setFinalPrice: (price: number) => {
+      set({ finalPrice: price });
+    },
+    setCoupon: (coupon: string) => {
+      set({ coupon });
+    },
   };
 });

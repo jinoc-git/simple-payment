@@ -23,11 +23,15 @@ const OrderProductsInfo = ({
   countList,
   productList,
 }: OrderProductInfoProps) => {
-  const totalPrice = orderStore((state) => state.totalPrice);
-  const setTotalPrice = orderStore((state) => state.setTotalPrice);
+  const { orderPrice, setOrderPrice } = orderStore(
+    ({ orderPrice, setOrderPrice }) => ({
+      orderPrice,
+      setOrderPrice,
+    }),
+  );
 
   useEffect(() => {
-    setTotalPrice(calcTotalPrice(productList, countList));
+    setOrderPrice(calcTotalPrice(productList, countList));
   }, []);
 
   return (
@@ -36,7 +40,7 @@ const OrderProductsInfo = ({
       footer={
         <CardFooter className="flex justify-between">
           <p className="text-[17px] font-semibold">주문금액</p>
-          <p>{addCommas(totalPrice)}원</p>
+          <p>{addCommas(orderPrice)}원</p>
         </CardFooter>
       }
     >

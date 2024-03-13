@@ -59,7 +59,8 @@ export const getMyCoupons = async (userId: string) => {
   const { data, error } = await supabaseServerClient
     .from('coupons')
     .select('*')
-    .eq('user_id', userId);
+    .eq('user_id', userId)
+    .eq('is_used', false);
 
   if (error !== null) throw new Error(error.message);
 
