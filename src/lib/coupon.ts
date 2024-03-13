@@ -1,6 +1,6 @@
 import { supabaseClientClient } from './auth';
 
-import type { InsertCouponType } from './database.types';
+import type { CouponType, InsertCouponType } from './database.types';
 
 export const addMembershipCoupons = async (userId: string | undefined) => {
   if (!userId) return;
@@ -30,4 +30,16 @@ export const addMembershipCoupons = async (userId: string | undefined) => {
     .insert([rateCoupon, amountCoupon]);
 
   if (error !== null) throw new Error(error.message);
+};
+
+export const checkCondition = (coupon: CouponType, totalPrice: number) => {
+  const { expiry_date, usage_amount } = coupon;
+  const today = new Date();
+  const isExpire = today > new Date(expiry_date);
+  if (isExpire) return false;
+
+  const isNotUsage = totalPrice < usage_amount;
+  if (isNotUsage) return false;
+
+  return true;
 };

@@ -54,3 +54,14 @@ export const getProductListByIds = cache(async (ids: string[]) => {
 
   return data;
 });
+
+export const getMyCoupons = async (userId: string) => {
+  const { data, error } = await supabaseServerClient
+    .from('coupons')
+    .select('*')
+    .eq('user_id', userId);
+
+  if (error !== null) throw new Error(error.message);
+
+  return data;
+};

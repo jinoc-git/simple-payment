@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { uuid } from '@supabase/gotrue-js/dist/module/lib/helpers';
 
@@ -8,13 +8,14 @@ import OrdersheetContent from '@/components/common/layouts/ordersheetContent/Ord
 import { CardFooter } from '@/components/ui/card';
 import { calcTotalPrice } from '@/lib/calc';
 import { addCommas } from '@/lib/changeNumberFormat';
+import { orderStore } from '@/store/orderStore';
 
 import OrderProduct from './orderProduct/OrderProduct';
 
 import type { ProductType } from '@/lib/database.types';
 
 interface OrderProductInfoProps {
-  productList: ProductType[] | null;
+  productList: ProductType[];
   countList: string[];
 }
 
@@ -22,9 +23,12 @@ const OrderProductsInfo = ({
   countList,
   productList,
 }: OrderProductInfoProps) => {
-  if (!productList) return <div>오류</div>;
+  const totalPrice = orderStore((state) => state.totalPrice);
+  const setTotalPrice = orderStore((state) => state.setTotalPrice);
 
-  console.log(productList);
+  useEffect(() => {
+    setTotalPrice(calcTotalPrice(productList, countList));
+  }, []);
 
   return (
     <OrdersheetContent
@@ -32,7 +36,7 @@ const OrderProductsInfo = ({
       footer={
         <CardFooter className="flex justify-between">
           <p className="text-[17px] font-semibold">주문금액</p>
-          <p>{addCommas(calcTotalPrice(productList, countList))}원</p>
+          <p>{addCommas(totalPrice)}원</p>
         </CardFooter>
       }
     >

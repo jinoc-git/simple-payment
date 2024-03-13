@@ -11,7 +11,7 @@ import type { SearchParams } from '@/app/ordersheet/page';
 import type { UserType } from '@/lib/database.types';
 
 interface OrderInfoProps {
-  user: UserType | null;
+  user: UserType;
   searchParams: SearchParams;
 }
 
@@ -22,12 +22,14 @@ const OrderInfo = async ({ user, searchParams }: OrderInfoProps) => {
   const productList = await getProductListByIds(ids);
   const countList = typeof count === 'string' ? [count] : count;
 
+  if (!productList) return <div>오류</div>;
+
   return (
     <section className="flex flex-col gap-4 w-[600px]">
       <OrderProductsInfo countList={countList} productList={productList} />
       <OrderPerson user={user} />
       <DeliveryInfo user={user} />
-      <CouponAndPoint />
+      <CouponAndPoint user={user} />
     </section>
   );
 };
