@@ -1,6 +1,6 @@
 import { supabaseClientClient } from './auth';
 
-import type { InsertProductType } from '@/constants/mockProduct';
+import type { InsertProductType } from './database.types';
 
 export const addProduct = async (product: InsertProductType) => {
   const { data, error } = await supabaseClientClient.from('products').insert({
