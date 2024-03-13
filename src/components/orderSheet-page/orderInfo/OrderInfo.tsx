@@ -4,6 +4,7 @@ import DeliveryInfo from '@/components/orderSheet-page/orderInfo/deliveryInfo/De
 import OrderPerson from '@/components/orderSheet-page/orderInfo/orderPerson/OrderPerson';
 import { getProductListByIds } from '@/lib/serverActions';
 
+import CouponAndPoint from './couponAndPoint/CouponAndPoint';
 import OrderProductsInfo from './orderProductInfo/OrderProductsInfo';
 
 import type { SearchParams } from '@/app/ordersheet/page';
@@ -26,6 +27,7 @@ const OrderInfo = async ({ user, searchParams }: OrderInfoProps) => {
       <OrderProductsInfo countList={countList} productList={productList} />
       <OrderPerson user={user} />
       <DeliveryInfo user={user} />
+      <CouponAndPoint />
     </section>
   );
 };

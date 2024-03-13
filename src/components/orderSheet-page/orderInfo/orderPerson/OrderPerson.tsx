@@ -4,13 +4,8 @@ import React from 'react';
 
 import { Loader2 } from 'lucide-react';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import OrdersheetContent from '@/components/common/layouts/ordersheetContent/OrdersheetContent';
+import { CardDescription } from '@/components/ui/card';
 
 import type { UserType } from '@/lib/database.types';
 
@@ -20,26 +15,19 @@ interface OrderPersonProps {
 
 const OrderPerson = ({ user }: OrderPersonProps) => {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg border-b-2">주문자 정보</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-col gap-1">
-          {user === null ? (
-            <div className="flex-box h-[72px]">
-              <Loader2 className=" animate-spin" />
-            </div>
-          ) : (
-            <>
-              <p>{user.username}</p>
-              <CardDescription>{user.phone}</CardDescription>
-              <CardDescription>{user.email}</CardDescription>
-            </>
-          )}
+    <OrdersheetContent title="주문자 정보">
+      {user === null ? (
+        <div className="flex-box h-[72px]">
+          <Loader2 className=" animate-spin" />
         </div>
-      </CardContent>
-    </Card>
+      ) : (
+        <>
+          <p>{user.username}</p>
+          <CardDescription>{user.phone}</CardDescription>
+          <CardDescription>{user.email}</CardDescription>
+        </>
+      )}
+    </OrdersheetContent>
   );
 };
 
