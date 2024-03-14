@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { X } from 'lucide-react';
 
@@ -14,7 +14,12 @@ interface PointProps {
 }
 
 const Point = ({ point }: PointProps) => {
-  const setUsingPoint = orderStore(({ setUsingPoint }) => setUsingPoint);
+  const { afterCouponPrice, setUsingPoint } = orderStore(
+    ({ setUsingPoint, afterCouponPrice }) => ({
+      setUsingPoint,
+      afterCouponPrice,
+    }),
+  );
   const [usePoint, setUsePoint] = useState(0);
 
   const onChangePoint = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,6 +28,7 @@ const Point = ({ point }: PointProps) => {
   };
   const useTotalPoint = () => {
     setUsePoint(point);
+    setUsingPoint(point);
   };
   const onClickX = () => {
     setUsePoint(0);
@@ -31,6 +37,10 @@ const Point = ({ point }: PointProps) => {
   const onClickUsePoint = () => {
     setUsingPoint(usePoint);
   };
+
+  useEffect(() => {
+    setUsingPoint(usePoint);
+  }, [afterCouponPrice]);
 
   return (
     <div className=" space-y-2">
