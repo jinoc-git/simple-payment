@@ -3,6 +3,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import type { Database, InsertUserType } from './database.types';
 import type { SigninFormRegisterInput } from '@/components/signinForm/SigninForm';
 import type { SignupFormRegisterInput } from '@/components/signupForm/SignupForm';
+import type { Session } from '@supabase/auth-helpers-nextjs';
 
 const supabaseClientClient = createClientComponentClient<Database>();
 
@@ -67,6 +68,31 @@ export const signinWithGoogle = async () => {
   });
 
   if (error !== null) throw new Error(error.message);
+};
+
+export const checkUser = async (session: Session | null) => {
+  if (session) {
+    const { user } = session;
+    if (user.app_metadata.provider === 'google') {
+      const { data: isExist } = await supabaseClientClient
+        .from('users')
+        .select('id')
+        .eq('id', user.id)
+        .single();
+
+      if (!isExist) {
+        const newUser: InsertUserType = {
+          id: user.id,
+          email: user.email!,
+          phone: user.phone ?? '01012345678',
+          role: '일반 사용자',
+          username: user.user_metadata.name,
+        };
+
+        await insertUser(newUser);
+      }
+    }
+  }
 };
 
 export const getUserFromClient = async (userId: string) => {
