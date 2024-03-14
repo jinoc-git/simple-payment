@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Simple Payments Project
 
-## Getting Started
+| Front-End | [노진철](https://github.com/jinoc-git) |
+| --------- | -------------------------------------- |
 
-First, run the development server:
+## 프로젝트 소개
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+shadcn/ui, Zod, React Hook Form, Supabase를 사용하여 상품 결제 연습 프로젝트
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 프로젝트 route 구조
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- / : 상품 리스트가 있는 메인 페이지
+- /signin : 로그인 페이지
+- /signup : 회원가입 페이지
+- /admin : 상품 등록할 수 있는 관리자 페이지
+- /productDetail/:productId : 상품 디테일 페이지
+- /ordersheet : 상품을 결제하는 페이지
+- /ordersheet/success : 상품을 결제 성공 페이지
+- /ordersheet/fail : 상품을 결제 실패 페이지
+- /auth/callback : 소셜 로그인의 callback 페이지
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 구현 기능
 
-## Learn More
+1. 로그인, 회원가입
 
-To learn more about Next.js, take a look at the following resources:
+- step에 따라 회원가입이 가능하도록 적절한 애니메이션 구현
+- Zod를 사용하여 유효성 검사 구현
+- Supabase의 auth를 사용하여 로그인, 회원가입 구현
+- Supabase의 Oauth를 사용하여 구글 로그인 구현
+- Next.js의 server action과 middleware를 사용하여 로그인 유지 기능 구현
+- api 함수 에러 시 toast 모달로 안내하는 기능 구현
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. 결제
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- 배송 정보 수정 기능 구현
+- 쿠폰 사용 기능 구현
+- 포인트 사용 기능 구현
+- 토스 payments의 SDK를 사용하여 결제 기능 구현
 
-## Deploy on Vercel
+## 기술 스택
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<div>
+  <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+  <img src="https://img.shields.io/badge/next-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"/>
+	<img src="https://img.shields.io/badge/tailwindCss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"/> <br />
+  <img src="https://img.shields.io/badge/supabase-3FCF8E?style=for-the-badge&logo=supabase&logoColor=white">
+  <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white">
+  <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white">
+</div>
