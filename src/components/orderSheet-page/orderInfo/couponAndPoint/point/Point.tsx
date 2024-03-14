@@ -33,11 +33,12 @@ const Point = ({ point }: PointProps) => {
   };
   const onClickUsePoint = () => {
     setUsingPoint(usePoint);
-    setFinalPrice(afterCouponPrice - point);
+    setFinalPrice(afterCouponPrice - usePoint);
   };
 
   useEffect(() => {
     setUsingPoint(usePoint);
+    setFinalPrice(afterCouponPrice - usePoint);
   }, [afterCouponPrice]);
 
   return (
