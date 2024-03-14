@@ -1,8 +1,9 @@
 import { create } from 'zustand';
 
-import type { ProductType } from '@/lib/database.types';
+import type { ProductType, UserType } from '@/lib/database.types';
 
 interface OrderStore {
+  orderUser: UserType | null;
   orderList: ProductType[];
   countList: string[];
   coupon: { id: string | null; discount: number };
@@ -11,6 +12,9 @@ interface OrderStore {
   orderPrice: number;
   afterCouponPrice: number;
   finalPrice: number;
+  setOrderList: (list: ProductType[]) => void;
+  setCountList: (list: string[]) => void;
+  setOrderUser: (user: UserType) => void;
   setUsingPoint: (point: number) => void;
   setDeliveryAmount: (price: number) => void;
   setOrderPrice: (price: number) => void;
@@ -21,6 +25,7 @@ interface OrderStore {
 
 export const orderStore = create<OrderStore>((set, get) => {
   return {
+    orderUser: null,
     orderList: [],
     countList: [],
     coupon: { id: null, discount: 0 },
@@ -29,9 +34,17 @@ export const orderStore = create<OrderStore>((set, get) => {
     orderPrice: 0,
     afterCouponPrice: 0,
     finalPrice: 0,
+    setOrderList: (list: ProductType[]) => {
+      set({ orderList: list });
+    },
+    setCountList: (list: string[]) => {
+      set({ countList: list });
+    },
+    setOrderUser: (user: UserType) => {
+      set({ orderUser: user });
+    },
     setUsingPoint: (point: number) => {
-      const finalPrice = get().afterCouponPrice - point;
-      set({ usingPoint: point, finalPrice });
+      set({ usingPoint: point });
     },
     setDeliveryAmount: (price: number) => {
       set({ deliveryAmount: price });

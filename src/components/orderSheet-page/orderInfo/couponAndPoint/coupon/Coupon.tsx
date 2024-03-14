@@ -24,14 +24,7 @@ interface CouponProps {
 
 const Coupon = ({ myCouponList }: CouponProps) => {
   const { orderPrice, setCoupon, setAfterCouponPrice, setFinalPrice } =
-    orderStore(
-      ({ orderPrice, setCoupon, setAfterCouponPrice, setFinalPrice }) => ({
-        orderPrice,
-        setCoupon,
-        setAfterCouponPrice,
-        setFinalPrice,
-      }),
-    );
+    orderStore();
 
   const onChangeCoupon = (val: string) => {
     if (val === 'none') {
@@ -50,7 +43,6 @@ const Coupon = ({ myCouponList }: CouponProps) => {
 
   useEffect(() => {
     setAfterCouponPrice(orderPrice);
-    setFinalPrice(orderPrice);
   }, []);
 
   return (

@@ -14,12 +14,7 @@ interface PointProps {
 }
 
 const Point = ({ point }: PointProps) => {
-  const { afterCouponPrice, setUsingPoint } = orderStore(
-    ({ setUsingPoint, afterCouponPrice }) => ({
-      setUsingPoint,
-      afterCouponPrice,
-    }),
-  );
+  const { afterCouponPrice, setUsingPoint, setFinalPrice } = orderStore();
   const [usePoint, setUsePoint] = useState(0);
 
   const onChangePoint = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,13 +24,16 @@ const Point = ({ point }: PointProps) => {
   const useTotalPoint = () => {
     setUsePoint(point);
     setUsingPoint(point);
+    setFinalPrice(afterCouponPrice - point);
   };
   const onClickX = () => {
     setUsePoint(0);
     setUsingPoint(0);
+    setFinalPrice(afterCouponPrice);
   };
   const onClickUsePoint = () => {
     setUsingPoint(usePoint);
+    setFinalPrice(afterCouponPrice - point);
   };
 
   useEffect(() => {

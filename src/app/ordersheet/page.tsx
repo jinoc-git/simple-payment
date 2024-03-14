@@ -19,6 +19,7 @@ export default async function OrderSheet(props: OrderSheetProps) {
   if (Object.keys(props.searchParams).length < 2) redirect('/');
 
   const user = await getUserFromServer(session);
+  if (!user) redirect('/');
 
   return (
     <main className="min-h-[calc(100vh-48px)] bg-gray-100">

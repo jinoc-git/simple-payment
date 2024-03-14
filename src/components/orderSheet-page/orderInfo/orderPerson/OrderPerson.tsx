@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import OrdersheetContent from '@/components/common/layouts/ordersheetContent/OrdersheetContent';
 import { CardDescription } from '@/components/ui/card';
+import { orderStore } from '@/store/orderStore';
 
 import type { UserType } from '@/lib/database.types';
 
@@ -12,6 +13,12 @@ interface OrderPersonProps {
 }
 
 const OrderPerson = ({ user }: OrderPersonProps) => {
+  const setOrderUser = orderStore(({ setOrderUser }) => setOrderUser);
+
+  useEffect(() => {
+    setOrderUser(user);
+  }, [user]);
+
   return (
     <OrdersheetContent title="주문자 정보">
       <p>{user.username}</p>
