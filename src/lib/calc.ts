@@ -33,3 +33,8 @@ export const calcCouponDiscountAmount = (
   if (discount_type === 'amount') return discount;
   else return Math.round(orderPrice * (discount / 100));
 };
+
+export const calcSavePoint = (amount: number) => {
+  const savePoint = Math.round((amount / 100) * 2);
+  return savePoint;
+};

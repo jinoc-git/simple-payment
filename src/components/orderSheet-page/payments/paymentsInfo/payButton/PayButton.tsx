@@ -36,10 +36,11 @@ const PayButton = () => {
         customerName: orderUser?.username,
         customerEmail: orderUser?.email,
         customerMobilePhone: orderUser?.phone,
+        showCustomerMobilePhone: true,
         shipping: {
           fullName: deliveryUser.name,
           address: {
-            country: 'kor',
+            country: 'KR',
             area2: deliveryUser.address,
             line2: deliveryUser.detailAddress ?? '',
           },
