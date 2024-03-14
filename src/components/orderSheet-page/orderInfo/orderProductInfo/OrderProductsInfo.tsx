@@ -26,30 +26,22 @@ const OrderProductsInfo = ({
   const {
     deliveryAmount,
     orderPrice,
+    setOrderList,
+    setCountList,
     setOrderPrice,
     setDeliveryAmount,
+    setAfterCouponPrice,
     setFinalPrice,
-  } = orderStore(
-    ({
-      deliveryAmount,
-      orderPrice,
-      setOrderPrice,
-      setDeliveryAmount,
-      setFinalPrice,
-    }) => ({
-      deliveryAmount,
-      orderPrice,
-      setOrderPrice,
-      setDeliveryAmount,
-      setFinalPrice,
-    }),
-  );
+  } = orderStore();
 
   useEffect(() => {
     const orderAmount = calcTotalPrice(productList, countList);
     const deliveryPrice = calcDeliveryAmount(productList);
+    setOrderList(productList);
+    setCountList(countList);
     setOrderPrice(orderAmount);
     setDeliveryAmount(deliveryPrice);
+    setAfterCouponPrice(orderAmount + deliveryPrice);
     setFinalPrice(orderAmount + deliveryPrice);
   }, []);
 

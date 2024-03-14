@@ -25,7 +25,7 @@ const OrderInfo = async ({ user, searchParams }: OrderInfoProps) => {
   if (!productList) return <div>오류</div>;
 
   return (
-    <section className="flex flex-col gap-4 w-[600px]">
+    <section className="flex flex-col gap-4 w-[570px]">
       <OrderProductsInfo countList={countList} productList={productList} />
       <OrderPerson user={user} />
       <DeliveryInfo user={user} />

@@ -10,7 +10,7 @@ interface PaymentsProps {
 
 const Payments = ({ user }: PaymentsProps) => {
   return (
-    <section className="flex flex-col gap-4 w-[420px]">
+    <section className="w-[450px]">
       <PaymentsInfo />
     </section>
   );

@@ -8,9 +8,10 @@ import { addCommas } from '@/lib/changeNumberFormat';
 import { orderStore } from '@/store/orderStore';
 
 import Desc from './desc/Desc';
+import TossPayment from '../tossPayment/TossPayment';
 
 const PaymentsInfo = () => {
-  const { deliveryAmount, orderPrice, coupon, usingPoint, finalPrice } =
+  const { finalPrice, deliveryAmount, orderPrice, coupon, usingPoint } =
     orderStore();
   const [isFixed, setIsFixed] = useState(false);
 
@@ -27,15 +28,17 @@ const PaymentsInfo = () => {
   }, []);
 
   return (
-    <div className={`${isFixed ? ' fixed top-5' : ' static'} w-[420px]`}>
+    <div
+      className={`${isFixed ? ' fixed top-5' : ' static'} w-[450px] space-y-4`}
+    >
       <OrdersheetContent
         title="최종 결제 금액"
         footer={
-          <CardFooter>
+          <CardFooter className="flex flex-col gap-2">
             <div className=" flex items-center justify-between w-full">
               <p className=" font-semibold">최종 결제 금액: </p>
               <p className=" text-xl font-semibold text-red-500">
-                {addCommas(deliveryAmount + finalPrice)}원
+                {addCommas(finalPrice + deliveryAmount)}원
               </p>
             </div>
           </CardFooter>
@@ -46,6 +49,7 @@ const PaymentsInfo = () => {
         <Desc name="포인트 사용" content={`-${addCommas(usingPoint)}원`} />
         <Desc name="배송비" content={`${addCommas(deliveryAmount)}원`} />
       </OrdersheetContent>
+      <TossPayment />
     </div>
   );
 };
