@@ -18,7 +18,7 @@ export const getAuthSession = async () => {
   return session;
 };
 
-export const getUserFromServer = async (session: Session) => {
+export const getUserFromServer = cache(async (session: Session) => {
   const { data, error } = await supabaseServerClient
     .from('users')
     .select('*')
@@ -26,7 +26,7 @@ export const getUserFromServer = async (session: Session) => {
     .single();
 
   return data;
-};
+});
 
 export const getProductList = cache(async () => {
   const { data, error } = await supabaseServerClient

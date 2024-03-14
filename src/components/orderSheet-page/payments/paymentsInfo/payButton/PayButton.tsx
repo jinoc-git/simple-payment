@@ -6,14 +6,29 @@ import { uuid } from '@supabase/gotrue-js/dist/module/lib/helpers';
 
 import { Button } from '@/components/ui/button';
 import { usePaymentWidget } from '@/hooks/usePaymentWidget';
+import useToastModal from '@/hooks/useToastModal';
 import { getOrderName } from '@/lib/getOrderName';
 import { orderStore } from '@/store/orderStore';
 
 const PayButton = () => {
   const { data: paymentWidget } = usePaymentWidget();
-  const { orderUser, orderList } = orderStore();
+  const { toast } = useToastModal();
+  const { deliveryUser, orderUser, orderList } = orderStore();
 
   const onClickPay = async () => {
+    if (!deliveryUser?.name) {
+      toast.warning('받는 분 성함을 입력해 주세요', 2000);
+      return;
+    }
+    if (!deliveryUser?.phone) {
+      toast.warning('받는 분 전화번호를 입력해 주세요', 2000);
+      return;
+    }
+    if (!deliveryUser?.address) {
+      toast.warning('받는 분 주소를 입력해 주세요', 2000);
+      return;
+    }
+
     try {
       await paymentWidget?.requestPayment({
         orderId: uuid(),

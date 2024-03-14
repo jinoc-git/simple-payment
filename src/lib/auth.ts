@@ -68,3 +68,13 @@ export const signinWithGoogle = async () => {
 
   if (error !== null) throw new Error(error.message);
 };
+
+export const getUserFromClient = async (userId: string) => {
+  const { data, error } = await supabaseClientClient
+    .from('users')
+    .select('*')
+    .eq('id', userId)
+    .single();
+
+  return data;
+};
