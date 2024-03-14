@@ -1,5 +1,7 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
+import { addMembershipCoupons } from './coupon';
+
 import type { Database, InsertUserType } from './database.types';
 import type { SigninFormRegisterInput } from '@/components/signinForm/SigninForm';
 import type { SignupFormRegisterInput } from '@/components/signupForm/SignupForm';
@@ -90,6 +92,7 @@ export const checkUser = async (session: Session | null) => {
         };
 
         await insertUser(newUser);
+        await addMembershipCoupons(user.id);
       }
     }
   }
