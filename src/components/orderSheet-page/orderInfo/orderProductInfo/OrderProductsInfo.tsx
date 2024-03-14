@@ -42,7 +42,7 @@ const OrderProductsInfo = ({
     setOrderPrice(orderAmount);
     setDeliveryAmount(deliveryPrice);
     setAfterCouponPrice(orderAmount + deliveryPrice);
-    setFinalPrice(orderAmount + deliveryPrice);
+    setFinalPrice(orderAmount);
   }, []);
 
   return (
