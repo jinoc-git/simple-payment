@@ -12,7 +12,7 @@ interface OrderStore {
   afterCouponPrice: number;
   finalPrice: number;
   setUsingPoint: (point: number) => void;
-  addDeliveryPrice: (price: number) => void;
+  addDeliveryAmount: (price: number) => void;
   setOrderPrice: (price: number) => void;
   setAfterCouponPrice: (price: number) => void;
   setCoupon: (coupon: string) => void;
@@ -32,7 +32,7 @@ export const orderStore = create<OrderStore>((set, get) => {
       const finalPrice = get().afterCouponPrice - point;
       set({ usingPoint: point, finalPrice });
     },
-    addDeliveryPrice: (price: number) => {
+    addDeliveryAmount: (price: number) => {
       const deliveryAmount = get().deliveryAmount + price;
       set({ deliveryAmount });
     },

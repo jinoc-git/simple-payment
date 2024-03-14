@@ -23,11 +23,11 @@ const OrderProductsInfo = ({
   countList,
   productList,
 }: OrderProductInfoProps) => {
-  const { orderPrice, setOrderPrice, addDeliveryPrice } = orderStore(
-    ({ orderPrice, setOrderPrice, addDeliveryPrice }) => ({
+  const { orderPrice, setOrderPrice, addDeliveryAmount } = orderStore(
+    ({ orderPrice, setOrderPrice, addDeliveryAmount }) => ({
       orderPrice,
       setOrderPrice,
-      addDeliveryPrice,
+      addDeliveryAmount,
     }),
   );
 
@@ -36,7 +36,7 @@ const OrderProductsInfo = ({
     const totalDeliveryAmount = productList
       .map(({ info }) => info.deliveryAmount)
       .reduce((acc, cur) => acc + cur, 0);
-    addDeliveryPrice(totalDeliveryAmount);
+    addDeliveryAmount(totalDeliveryAmount);
   }, []);
 
   return (
