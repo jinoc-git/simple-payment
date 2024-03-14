@@ -4,6 +4,8 @@ import React from 'react';
 
 import { addProduct } from '@/lib/admin';
 
+import { Button } from '../ui/button';
+
 const AddProduct = () => {
   const onClick = async () => {
     const mock = {
@@ -27,7 +29,7 @@ const AddProduct = () => {
   };
   return (
     <div>
-      <button onClick={onClick}>AddProduct</button>
+      <Button onClick={onClick}>mock 데이터 추가</Button>
     </div>
   );
 };

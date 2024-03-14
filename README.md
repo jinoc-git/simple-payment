@@ -13,7 +13,10 @@ shadcn/ui, Zod, React Hook Form, Supabase를 사용하여 상품 결제 연습 �
 - /signin : 로그인 페이지
 - /signup : 회원가입 페이지
 - /admin : 상품 등록할 수 있는 관리자 페이지
-- /cart : 상품을 결제하는 페이지
+- /productDetail/:productId : 상품 디테일 페이지
+- /ordersheet : 상품을 결제하는 페이지
+- /ordersheet/success : 상품을 결제 성공 페이지
+- /ordersheet/fail : 상품을 결제 실패 페이지
 - /auth/callback : 소셜 로그인의 callback 페이지
 
 ## 구현 기능
@@ -29,10 +32,10 @@ shadcn/ui, Zod, React Hook Form, Supabase를 사용하여 상품 결제 연습 �
 
 2. 결제
 
-- 주문자 정보 수정 기능 구현
 - 배송 정보 수정 기능 구현
-- 쿠폰 / 포인트 기능 구현
-- 토스 payments의 API와 SDK를 사용하여 결제 기능 구현
+- 쿠폰 사용 기능 구현
+- 포인트 사용 기능 구현
+- 토스 payments의 SDK를 사용하여 결제 기능 구현
 
 ## 기술 스택
 

@@ -39,9 +39,9 @@ const PayButton = () => {
         shipping: {
           fullName: deliveryUser.name,
           address: {
-            country: 'kor',
+            country: 'KR',
             area2: deliveryUser.address,
-            line2: deliveryUser.detailAddress ?? '',
+            line2: deliveryUser.detailAddress ?? '없음',
           },
         },
         successUrl: `${window.location.origin}/ordersheet/success`,
