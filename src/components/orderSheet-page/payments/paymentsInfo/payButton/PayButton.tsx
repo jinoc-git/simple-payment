@@ -36,6 +36,14 @@ const PayButton = () => {
         customerName: orderUser?.username,
         customerEmail: orderUser?.email,
         customerMobilePhone: orderUser?.phone,
+        shipping: {
+          fullName: deliveryUser.name,
+          address: {
+            country: 'kor',
+            area2: deliveryUser.address,
+            line2: deliveryUser.detailAddress ?? '',
+          },
+        },
         successUrl: `${window.location.origin}/ordersheet/success`,
         failUrl: `${window.location.origin}/ordersheet/fail`,
       });
