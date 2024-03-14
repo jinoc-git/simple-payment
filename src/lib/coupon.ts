@@ -43,3 +43,15 @@ export const checkCondition = (coupon: CouponType, totalPrice: number) => {
 
   return true;
 };
+
+export const setCouponisUsed = async (couponId: string | null) => {
+  if (!couponId) return;
+
+  const { data, error } = await supabaseClientClient
+    .from('coupons')
+    .update({ is_used: true })
+    .eq('id', couponId)
+    .select();
+
+  if (error !== null) throw new Error(error.message);
+};

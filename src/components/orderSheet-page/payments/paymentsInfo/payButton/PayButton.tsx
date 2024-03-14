@@ -36,6 +36,7 @@ const PayButton = () => {
         customerName: orderUser?.username,
         customerEmail: orderUser?.email,
         customerMobilePhone: orderUser?.phone,
+        showCustomerMobilePhone: true,
         shipping: {
           fullName: deliveryUser.name,
           address: {

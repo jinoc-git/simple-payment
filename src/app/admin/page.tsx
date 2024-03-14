@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import AddProduct from '@/components/admin-page/AddProduct';
 import { getAuthSession } from '@/lib/serverActions';
 
-export default async function page() {
+export default async function Admin() {
   const session = await getAuthSession();
 
   if (!session) redirect('/signin');
