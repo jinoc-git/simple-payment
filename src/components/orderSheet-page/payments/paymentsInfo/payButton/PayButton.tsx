@@ -14,7 +14,7 @@ const PayButton = () => {
   const { data: paymentWidget } = usePaymentWidget();
   const { toast } = useToastModal();
   const { deliveryUser, orderUser, orderList } = orderStore();
-  console.log(orderUser);
+
   const onClickPay = async () => {
     if (!deliveryUser?.name) {
       toast.warning('받는 분 성함을 입력해 주세요', 2000);
