@@ -1,11 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useRouter } from 'next/navigation';
 
 import useToastModal from '@/hooks/useToastModal';
-import { signout } from '@/lib/auth';
+import { checkUser, signout } from '@/lib/auth';
 
 import NavButtonItem from './navButtonItem/NavButtonItem';
 import NavLinkItem from './navLinkItem/NavLinkItem';
@@ -33,6 +33,10 @@ const Nav = ({ session }: NavProps) => {
       if (error instanceof Error) toast.warning(error.message, 2000);
     }
   };
+
+  useEffect(() => {
+    checkUser(session);
+  }, []);
 
   return (
     <NavigationMenu>
