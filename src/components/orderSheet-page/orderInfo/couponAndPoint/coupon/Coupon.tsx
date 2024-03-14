@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { uuid } from '@supabase/gotrue-js/dist/module/lib/helpers';
 
@@ -23,17 +23,21 @@ interface CouponProps {
 }
 
 const Coupon = ({ myCouponList }: CouponProps) => {
-  const { orderPrice, setCoupon, setAfterCouponPrice } = orderStore();
+  const { afterCouponPrice, orderPrice, setCoupon, setAfterCouponPrice } =
+    orderStore();
+  const [discount, setDiscount] = useState(0);
 
   const onChangeCoupon = (val: string) => {
     if (val === 'none') {
-      setAfterCouponPrice(orderPrice);
+      setCoupon(null, 0);
+      setAfterCouponPrice(afterCouponPrice + discount);
       return;
     }
     const usingCoupon = myCouponList.find((coupon) => coupon.id === val);
     if (usingCoupon) {
       const dicountAmount = calcCouponDiscountAmount(orderPrice, usingCoupon);
 
+      setDiscount(dicountAmount);
       setCoupon(val, dicountAmount);
       setAfterCouponPrice(orderPrice - dicountAmount);
     }

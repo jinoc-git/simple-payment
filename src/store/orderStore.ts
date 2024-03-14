@@ -29,7 +29,7 @@ interface OrderStore {
   setOrderPrice: (price: number) => void;
   setAfterCouponPrice: (price: number) => void;
   setFinalPrice: (price: number) => void;
-  setCoupon: (id: string, discount: number) => void;
+  setCoupon: (id: string | null, discount: number) => void;
 }
 
 export const orderStore = create<OrderStore>((set, get) => {
@@ -71,7 +71,7 @@ export const orderStore = create<OrderStore>((set, get) => {
     setFinalPrice: (price: number) => {
       set({ finalPrice: price });
     },
-    setCoupon: (id: string, discount: number) => {
+    setCoupon: (id: string | null, discount: number) => {
       set({ coupon: { id, discount } });
     },
   };
