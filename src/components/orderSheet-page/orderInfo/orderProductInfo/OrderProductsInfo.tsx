@@ -6,7 +6,7 @@ import { uuid } from '@supabase/gotrue-js/dist/module/lib/helpers';
 
 import OrdersheetContent from '@/components/common/layouts/ordersheetContent/OrdersheetContent';
 import { CardFooter } from '@/components/ui/card';
-import { calcTotalPrice } from '@/lib/calc';
+import { calcDeliveryAmount, calcTotalPrice } from '@/lib/calc';
 import { addCommas } from '@/lib/changeNumberFormat';
 import { orderStore } from '@/store/orderStore';
 
@@ -23,20 +23,34 @@ const OrderProductsInfo = ({
   countList,
   productList,
 }: OrderProductInfoProps) => {
-  const { orderPrice, setOrderPrice, addDeliveryAmount } = orderStore(
-    ({ orderPrice, setOrderPrice, addDeliveryAmount }) => ({
+  const {
+    deliveryAmount,
+    orderPrice,
+    setOrderPrice,
+    setDeliveryAmount,
+    setFinalPrice,
+  } = orderStore(
+    ({
+      deliveryAmount,
       orderPrice,
       setOrderPrice,
-      addDeliveryAmount,
+      setDeliveryAmount,
+      setFinalPrice,
+    }) => ({
+      deliveryAmount,
+      orderPrice,
+      setOrderPrice,
+      setDeliveryAmount,
+      setFinalPrice,
     }),
   );
 
   useEffect(() => {
-    setOrderPrice(calcTotalPrice(productList, countList));
-    const totalDeliveryAmount = productList
-      .map(({ info }) => info.deliveryAmount)
-      .reduce((acc, cur) => acc + cur, 0);
-    addDeliveryAmount(totalDeliveryAmount);
+    const orderAmount = calcTotalPrice(productList, countList);
+    const deliveryPrice = calcDeliveryAmount(productList);
+    setOrderPrice(orderAmount);
+    setDeliveryAmount(deliveryPrice);
+    setFinalPrice(orderAmount + deliveryPrice);
   }, []);
 
   return (
@@ -45,7 +59,7 @@ const OrderProductsInfo = ({
       footer={
         <CardFooter className="flex justify-between">
           <p className="text-[17px] font-semibold">주문금액</p>
-          <p>{addCommas(orderPrice)}원</p>
+          <p>{addCommas(deliveryAmount + orderPrice)}원</p>
         </CardFooter>
       }
     >

@@ -9,19 +9,27 @@ export const calcTotalPrice = (
   for (let i = 0; i < productList.length; i++) {
     const price = productList[i].info.price;
     const count = countList[i];
-    const deliveryAmount = productList[i].info.deliveryAmount;
-    totalPrice += price * +count + deliveryAmount;
+    totalPrice += price * +count;
   }
 
   return totalPrice;
 };
 
-export const calcPriceAfterCoupon = (
+export const calcDeliveryAmount = (productList: ProductType[]) => {
+  const totalDeliveryAmount = productList.reduce(
+    (acc, cur) => acc + cur.info.deliveryAmount,
+    0,
+  );
+
+  return totalDeliveryAmount;
+};
+
+export const calcCouponDiscountAmount = (
   orderPrice: number,
   coupon: CouponType,
 ) => {
   const { discount_type, discount } = coupon;
 
-  if (discount_type === 'amount') return orderPrice - discount;
-  else return (orderPrice * (100 - discount)) / 100;
+  if (discount_type === 'amount') return discount;
+  else return Math.round(orderPrice * (discount / 100));
 };

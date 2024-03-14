@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { calcPriceAfterCoupon } from '@/lib/calc';
+import { calcCouponDiscountAmount } from '@/lib/calc';
 import { checkCondition } from '@/lib/coupon';
 import { formatYYYYMMDDWithSlash } from '@/lib/dateFormat';
 import { orderStore } from '@/store/orderStore';
@@ -23,13 +23,15 @@ interface CouponProps {
 }
 
 const Coupon = ({ myCouponList }: CouponProps) => {
-  const { orderPrice, setCoupon, setAfterCouponPrice } = orderStore(
-    ({ orderPrice, setCoupon, setAfterCouponPrice }) => ({
-      orderPrice,
-      setCoupon,
-      setAfterCouponPrice,
-    }),
-  );
+  const { orderPrice, setCoupon, setAfterCouponPrice, setFinalPrice } =
+    orderStore(
+      ({ orderPrice, setCoupon, setAfterCouponPrice, setFinalPrice }) => ({
+        orderPrice,
+        setCoupon,
+        setAfterCouponPrice,
+        setFinalPrice,
+      }),
+    );
 
   const onChangeCoupon = (val: string) => {
     if (val === 'none') {
@@ -38,14 +40,17 @@ const Coupon = ({ myCouponList }: CouponProps) => {
     }
     const usingCoupon = myCouponList.find((coupon) => coupon.id === val);
     if (usingCoupon) {
-      setCoupon(val);
-      const afterPrice = calcPriceAfterCoupon(orderPrice, usingCoupon);
-      setAfterCouponPrice(afterPrice);
+      const dicountAmount = calcCouponDiscountAmount(orderPrice, usingCoupon);
+
+      setCoupon(val, dicountAmount);
+      setAfterCouponPrice(orderPrice - dicountAmount);
+      setFinalPrice(orderPrice - dicountAmount);
     }
   };
 
   useEffect(() => {
     setAfterCouponPrice(orderPrice);
+    setFinalPrice(orderPrice);
   }, []);
 
   return (

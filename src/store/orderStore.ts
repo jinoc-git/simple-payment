@@ -5,24 +5,25 @@ import type { ProductType } from '@/lib/database.types';
 interface OrderStore {
   orderList: ProductType[];
   countList: string[];
-  coupon: string | null;
+  coupon: { id: string | null; discount: number };
   usingPoint: number | 0;
   deliveryAmount: number;
   orderPrice: number;
   afterCouponPrice: number;
   finalPrice: number;
   setUsingPoint: (point: number) => void;
-  addDeliveryAmount: (price: number) => void;
+  setDeliveryAmount: (price: number) => void;
   setOrderPrice: (price: number) => void;
   setAfterCouponPrice: (price: number) => void;
-  setCoupon: (coupon: string) => void;
+  setFinalPrice: (price: number) => void;
+  setCoupon: (id: string, discount: number) => void;
 }
 
 export const orderStore = create<OrderStore>((set, get) => {
   return {
     orderList: [],
     countList: [],
-    coupon: null,
+    coupon: { id: null, discount: 0 },
     usingPoint: 0,
     deliveryAmount: 0,
     orderPrice: 0,
@@ -32,9 +33,8 @@ export const orderStore = create<OrderStore>((set, get) => {
       const finalPrice = get().afterCouponPrice - point;
       set({ usingPoint: point, finalPrice });
     },
-    addDeliveryAmount: (price: number) => {
-      const deliveryAmount = get().deliveryAmount + price;
-      set({ deliveryAmount });
+    setDeliveryAmount: (price: number) => {
+      set({ deliveryAmount: price });
     },
     setOrderPrice: (price: number) => {
       set({ orderPrice: price });
@@ -42,8 +42,11 @@ export const orderStore = create<OrderStore>((set, get) => {
     setAfterCouponPrice: (price: number) => {
       set({ afterCouponPrice: price });
     },
-    setCoupon: (coupon: string) => {
-      set({ coupon });
+    setFinalPrice: (price: number) => {
+      set({ finalPrice: price });
+    },
+    setCoupon: (id: string, discount: number) => {
+      set({ coupon: { id, discount } });
     },
   };
 });
