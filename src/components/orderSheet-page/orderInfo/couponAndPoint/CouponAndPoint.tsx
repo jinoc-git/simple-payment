@@ -18,7 +18,7 @@ const CouponAndPoint = async ({ user }: CouponAndPointProps) => {
   return (
     <OrdersheetContent title="쿠폰 / 포인트">
       <Coupon myCouponList={myCouponList} />
-      <Point />
+      <Point point={user.point} />
     </OrdersheetContent>
   );
 };

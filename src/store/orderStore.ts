@@ -6,31 +6,41 @@ interface OrderStore {
   orderList: ProductType[];
   countList: string[];
   coupon: string | null;
+  usingPoint: number | 0;
+  deliveryAmount: number;
   orderPrice: number;
   afterCouponPrice: number;
   finalPrice: number;
+  setUsingPoint: (point: number) => void;
+  addDeliveryAmount: (price: number) => void;
   setOrderPrice: (price: number) => void;
   setAfterCouponPrice: (price: number) => void;
-  setFinalPrice: (price: number) => void;
   setCoupon: (coupon: string) => void;
 }
 
-export const orderStore = create<OrderStore>((set) => {
+export const orderStore = create<OrderStore>((set, get) => {
   return {
     orderList: [],
     countList: [],
     coupon: null,
+    usingPoint: 0,
+    deliveryAmount: 0,
     orderPrice: 0,
     afterCouponPrice: 0,
     finalPrice: 0,
+    setUsingPoint: (point: number) => {
+      const finalPrice = get().afterCouponPrice - point;
+      set({ usingPoint: point, finalPrice });
+    },
+    addDeliveryAmount: (price: number) => {
+      const deliveryAmount = get().deliveryAmount + price;
+      set({ deliveryAmount });
+    },
     setOrderPrice: (price: number) => {
       set({ orderPrice: price });
     },
     setAfterCouponPrice: (price: number) => {
       set({ afterCouponPrice: price });
-    },
-    setFinalPrice: (price: number) => {
-      set({ finalPrice: price });
     },
     setCoupon: (coupon: string) => {
       set({ coupon });

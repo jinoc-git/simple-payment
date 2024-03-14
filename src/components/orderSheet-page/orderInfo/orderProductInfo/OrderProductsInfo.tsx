@@ -23,15 +23,20 @@ const OrderProductsInfo = ({
   countList,
   productList,
 }: OrderProductInfoProps) => {
-  const { orderPrice, setOrderPrice } = orderStore(
-    ({ orderPrice, setOrderPrice }) => ({
+  const { orderPrice, setOrderPrice, addDeliveryAmount } = orderStore(
+    ({ orderPrice, setOrderPrice, addDeliveryAmount }) => ({
       orderPrice,
       setOrderPrice,
+      addDeliveryAmount,
     }),
   );
 
   useEffect(() => {
     setOrderPrice(calcTotalPrice(productList, countList));
+    const totalDeliveryAmount = productList
+      .map(({ info }) => info.deliveryAmount)
+      .reduce((acc, cur) => acc + cur, 0);
+    addDeliveryAmount(totalDeliveryAmount);
   }, []);
 
   return (
