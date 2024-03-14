@@ -14,7 +14,7 @@ const PayButton = () => {
   const { data: paymentWidget } = usePaymentWidget();
   const { toast } = useToastModal();
   const { deliveryUser, orderUser, orderList } = orderStore();
-
+  console.log(orderUser);
   const onClickPay = async () => {
     if (!deliveryUser?.name) {
       toast.warning('받는 분 성함을 입력해 주세요', 2000);
@@ -35,7 +35,8 @@ const PayButton = () => {
         orderName: getOrderName(orderList),
         customerName: orderUser?.username,
         customerEmail: orderUser?.email,
-        customerMobilePhone: orderUser?.phone,
+        customerMobilePhone:
+          orderUser?.phone === '' ? deliveryUser.phone : orderUser?.phone,
         showCustomerMobilePhone: true,
         shipping: {
           fullName: deliveryUser.name,

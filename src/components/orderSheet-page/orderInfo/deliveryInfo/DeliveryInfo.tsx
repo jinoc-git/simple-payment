@@ -40,6 +40,7 @@ const DeliveryInfo = ({ user }: DeliveryInfoProps) => {
       return;
     }
     toast.default('수정 완료!', 2000);
+
     setDeliveryUserInfo(changedUser);
     setDeliveryUser(changedUser);
   };
