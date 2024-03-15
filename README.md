@@ -6,8 +6,10 @@
 ## 프로젝트 소개
 
 shadcn/ui, Zod, React Hook Form, Supabase를 사용하여 상품 결제 연습 프로젝트
+
 <br />
-https://simple-payment-tau.vercel.app/
+
+배포 주소: https://simple-payment-tau.vercel.app/
 
 ## 프로젝트 route 구조
 
@@ -29,7 +31,7 @@ https://simple-payment-tau.vercel.app/
 - Zod를 사용하여 유효성 검사 구현
 - Supabase의 auth를 사용하여 로그인, 회원가입 구현
 - Supabase의 Oauth를 사용하여 구글 로그인 구현
-- Next.js의 server action과 middleware를 사용하여 로그인 유지 기능 구현
+- Next.js의 server action과 middleware를 사용하여 로그인 여부 확인
 - api 함수 에러 시 toast 모달로 안내하는 기능 구현
 
 2. 결제
