@@ -5,7 +5,7 @@
 
 ## 프로젝트 소개
 
-shadcn/ui, Zod, React Hook Form, Supabase를 사용하여 상품 결제 연습 프로젝트
+shadcn/ui, Zod, React Hook Form, Supabase, toss payment를 사용하여 상품 결제 연습 프로젝트
 
 <br />
 
