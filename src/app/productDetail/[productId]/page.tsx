@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Product from '@/components/product/Product';
+import Product from '@/components/productDetail-page/Product';
 import { getProductById } from '@/lib/serverActions';
 
 interface ProductDetailProps {
