@@ -82,27 +82,6 @@ export type Database = {
         };
         Relationships: [];
       };
-      theme: {
-        Row: {
-          admin_id: string;
-          created_at: string;
-          id: string;
-          theme: string;
-        };
-        Insert: {
-          admin_id?: string;
-          created_at?: string;
-          id?: string;
-          theme: string;
-        };
-        Update: {
-          admin_id?: string;
-          created_at?: string;
-          id?: string;
-          theme?: string;
-        };
-        Relationships: [];
-      };
       users: {
         Row: {
           address: string | null;
