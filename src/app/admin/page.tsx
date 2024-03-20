@@ -10,7 +10,7 @@ export default async function Admin() {
 
   if (!session) redirect('/signin');
 
-  const isAdmin = session?.user.user_metadata.role === '관리자';
+  const isAdmin = session.user.user_metadata.role === '관리자';
   if (!isAdmin) redirect('/');
 
   return (
