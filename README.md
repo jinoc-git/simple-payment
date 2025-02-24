@@ -9,7 +9,7 @@ shadcn/ui, Zod, React Hook Form, Supabase, toss payment를 사용하여 상품 �
 
 <br />
 
-배포 주소: https://simple-payment-tau.vercel.app/
+배포 주소: https://simple-payment-tau.vercel.app/ (현재 사용 불가)
 
 ## 프로젝트 route 구조
 
